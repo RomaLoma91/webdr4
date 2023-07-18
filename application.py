@@ -42,7 +42,7 @@ class HTTPHandler(BaseHTTPRequestHandler):
         self.send_response(status_code)
         self.send_header('Content-type', 'text/html')    
         self.end_headers()       
-        with open(filename, 'rb') as fd:
+        with open(BASE_DIR / filename, 'rb') as fd:
                 self.wfile.write(fd.read())
 
     def send_static(self, filename, status_code=200):
@@ -55,6 +55,8 @@ class HTTPHandler(BaseHTTPRequestHandler):
         self.end_headers()
         with open(filename, 'rb') as fd:
             self.wfile.write(fd.read())
+    def log_message(self, format, *args):
+        return
 
 def save_data_to_json(data):
     try:
